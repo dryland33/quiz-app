@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Astronomy Quiz</title>
+  </head>
+  <body>
+    <section class="intro" role="region">         <!--intro page -->
+      <h1>How well do you know your solar system?</h1>
+      <img src="" alt="Movie reel in GIF form">
+      <button id="begin">Let's begin!</button>
+    </section>
+
+
+    <section class="questionForms js-hidden" role="region"> <!--question form -->
+      <div class="progress">
+        <div class="correctBar"></div>
+        <div class="totalBar"></div>
+      </div>
+      <h3 id="question"></h3>
+      <form action="#">
+        <label class="a"><input type="radio" name="myAnswer" value="a"><span class="a1"></span></label><br>
+        <label class="b"><input type="radio" name="myAnswer" value="b"><span class="b2"></span></label><br>
+        <label class="c"><input type="radio" name="myAnswer" value="c"><span class="c3"></span></label><br>
+        <label class="d"><input type="radio" name="myAnswer" value="d"><span class="d4"></span></label><br>
+        <button id="submit">Submit</button>
+      </form>
+    </section>
+    
+    
+    <section class="resultsPage js-hidden" role="region">    <!--results page -->
+      <div class="progress">
+        <div class="correctBar"></div>
+        <div class="totalBar"></div>
+      </div>
+      <h2 id="resultText"></h2>
+      <img id="picTrivia" alt="Trivia image">
+      <p id="textTrivia"></p>
+      <button class="next">Next Question</button>
+      <button class="goToScore js-hidden">Show my Score</button>
+    </section>
+    
+    
+    <section class="end js-hidden" role="region">      <!--summary page -->
+       <h1 id="score"></h1>
+       <img id="scorepic" alt="reaction to your score">
+       <button id="restart">Restart Quiz</button>
+    </section>
+    
+  </body>
+</html>
