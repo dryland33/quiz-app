@@ -89,7 +89,7 @@ const generateLandingPage = function () {
 
 // These functions conditionally replaces the contents of the <main> tag based on the state of myQuiz
 const renderLandingPage = function () {
-  console.log('`renderShoppingList` ran');
+  console.log('renderLandingPage()');
   //generate HTML
   const landingPageString = generateLandingPage();
   //insert HTML into DOM
@@ -100,12 +100,31 @@ const renderLandingPage = function () {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
+const handleBeginQuizClicked = function () {
+  console.log('handleBeginQuizClicked()');
+};
+
+const handleSubmitClicked = function () {
+  console.log('handleSubmitClicked()');
+};
+
+const handleShowScoreClicked = function () {
+  console.log('handleShowScoreClicked()');
+};
+
+const handleRestartClicked = function () {
+  console.log('handleRestartClicked()');
+};
 
 // This function is our callback when the page loads.
 // It is responsible for rendering the landing page and 
 // activating functions the handle events on the page. 
 const handleQuizzApp = function () {
   renderLandingPage();
+  handleBeginQuizClicked();
+  handleSubmitClicked();
+  handleShowScoreClicked();
+  handleRestartClicked();
 };
 
 // Call handleQuizzApp() when the page loads
