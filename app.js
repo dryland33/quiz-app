@@ -85,7 +85,7 @@ const generateLandingPage = function () {
 `;
 };
 
-const generateQuizQuestion = function () {
+const generateQuizQuestion = function (index) {
   console.log('generateQuizQuestion');
   return `
     <section class="questionForms" role="region">
@@ -93,19 +93,19 @@ const generateQuizQuestion = function () {
         <div class="correctBar"></div>
         <div class="totalBar"></div>
       </div>
-      <h3 id="question"></h3>
+      <h3 id="question">${myQuiz.questionList[index].question}</h3>
       <form action="#">
-        <label class="a"><input type="radio" name="myAnswer" value="a"><span class="a1"></span></label><br>
-        <label class="b"><input type="radio" name="myAnswer" value="b"><span class="b2"></span></label><br>
-        <label class="c"><input type="radio" name="myAnswer" value="c"><span class="c3"></span></label><br>
-        <label class="d"><input type="radio" name="myAnswer" value="d"><span class="d4"></span></label><br>
+        <label class="a">A.) <input type="radio" name="myAnswer" value="a"><span class="a1">${myQuiz.questionList[index].answers.a}</span></label><br>
+        <label class="b">B.) <input type="radio" name="myAnswer" value="b"><span class="b2">${myQuiz.questionList[index].answers.b}</span></label><br>
+        <label class="c">C.) <input type="radio" name="myAnswer" value="c"><span class="c3">${myQuiz.questionList[index].answers.c}</span></label><br>
+        <label class="d">D.) <input type="radio" name="myAnswer" value="d"><span class="d4">${myQuiz.questionList[index].answers.d}</span></label><br>
         <button id="submit">Submit</button>
       </form>
     </section>
   `;
 };
 
-const generateTrivia = function () {
+const generateTrivia = function (index) {
   console.log('generateTrivia');
   return `
     <section class="resultsPage" role="region"> 
@@ -114,8 +114,8 @@ const generateTrivia = function () {
         <div class="totalBar"></div>
       </div>
       <h2 id="resultText"></h2>
-      <img id="picTrivia" alt="Trivia image">
-      <p id="textTrivia"></p>
+      <img id="picTrivia" alt="Trivia image" src="${myQuiz.images[index]}">
+      <p id="textTrivia">${myQuiz.trivia[index]}</p>
       <button class="next">Next Question</button>
       <button class="goToScore js-hidden">Show my Score</button>
     </section>
@@ -125,7 +125,7 @@ const generateTrivia = function () {
 const generateResults = function () {
   console.log('generateResults');
   return `
-    <section class="end" role="region">      <!--summary page -->
+    <section class="end" role="region">
        <h1 id="score"></h1>
        <img id="scorepic" alt="reaction to your score">
        <button id="restart">Restart Quiz</button>
@@ -144,18 +144,18 @@ const renderLandingPage = function () {
   $('.quiz').html(landingPageString);
 };
 
-const renderQuestion = function () {
+const renderQuestion = function (index) {
   console.log('renderQuestion()');
   //generate HTML
-  const quizQuestionString = generateQuizQuestion();
+  const quizQuestionString = generateQuizQuestion(index);
   //insert HTML into DOM
   $('.quiz').html(quizQuestionString);
 };
 
-const renderTrivia = function () {
+const renderTrivia = function (index) {
   console.log('renderTrivia()');
   //generate HTML
-  const triviaString = generateTrivia();
+  const triviaString = generateTrivia(index);
   //insert HTML into DOM
   $('.quiz').html(triviaString);
 };
