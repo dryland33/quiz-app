@@ -79,14 +79,14 @@ const generateLandingPage = function () {
   return `
     <section class="intro" role="region">         
       <h1>How well do you know your solar system?</h1>
-      <img src="img/nasa10.gif" alt="Movie reel in GIF form">
-      <button id="begin">Let's begin!</button>
+      <img src="img/nasa10.gif" alt="rotating astroid in GIF form">
+      <button class="js-begin">Let's begin!</button>
     </section>
 `;
 };
 
 const generateQuizQuestion = function (index) {
-  console.log('generateQuizQuestion');
+  console.log('generateQuizQuestion()');
   return `
     <section class="questionForms" role="region">
       <div class="progress">
@@ -94,19 +94,19 @@ const generateQuizQuestion = function (index) {
         <div class="totalBar"></div>
       </div>
       <h3 id="question">${myQuiz.questionList[index].question}</h3>
-      <form action="#">
+      <form id="frmSubmit" action="#" class="js-question-submit">
         <label class="a">A.) <input type="radio" name="myAnswer" value="a"><span class="a1">${myQuiz.questionList[index].answers.a}</span></label><br>
         <label class="b">B.) <input type="radio" name="myAnswer" value="b"><span class="b2">${myQuiz.questionList[index].answers.b}</span></label><br>
         <label class="c">C.) <input type="radio" name="myAnswer" value="c"><span class="c3">${myQuiz.questionList[index].answers.c}</span></label><br>
         <label class="d">D.) <input type="radio" name="myAnswer" value="d"><span class="d4">${myQuiz.questionList[index].answers.d}</span></label><br>
-        <button id="submit">Submit</button>
+        <button id="btnSubmit" type="submit" >Submit</button>
       </form>
     </section>
   `;
 };
 
 const generateTrivia = function (index) {
-  console.log('generateTrivia');
+  console.log('generateTrivia()');
   return `
     <section class="resultsPage" role="region"> 
       <div class="progress">
@@ -123,7 +123,7 @@ const generateTrivia = function (index) {
 };
 
 const generateResults = function () {
-  console.log('generateResults');
+  console.log('generateResults()');
   return `
     <section class="end" role="region">
        <h1 id="score"></h1>
@@ -173,10 +173,23 @@ const renderResults = function () {
 // These functions handle events (submit, click, etc)
 const handleBeginQuizClicked = function () {
   console.log('handleBeginQuizClicked()');
+  // this function will be responsible for when the users begins the quiz
+  $('.js-begin').on('click', function(event) {
+    event.preventDefault();
+    //make the HTML for the first question and bind it to the DOM
+    renderQuestion(myQuiz.currentQuestion);
+  });
 };
 
 const handleSubmitClicked = function () {
   console.log('handleSubmitClicked()');
+  // this function will be responsible for when the user answers a quiz question
+  //listen for a click on the submit button
+  $('.js-question-submit').on('click', `.js-btn-submit`, event => {
+    event.preventDefault();
+    // render the trivia page associated with the current question
+    renderTrivia(myQuiz.currentQuestion);
+  });
 };
 
 const handleNextQuestionClicked = function () {
