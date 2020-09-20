@@ -88,7 +88,7 @@ const generateLandingPage = function () {
 const generateQuizQuestion = function () {
   console.log('generateQuizQuestion');
   return `
-    <section class="questionForms js-hidden" role="region">
+    <section class="questionForms" role="region">
       <div class="progress">
         <div class="correctBar"></div>
         <div class="totalBar"></div>
@@ -108,7 +108,7 @@ const generateQuizQuestion = function () {
 const generateTrivia = function () {
   console.log('generateTrivia');
   return `
-    <section class="resultsPage js-hidden" role="region"> 
+    <section class="resultsPage" role="region"> 
       <div class="progress">
         <div class="correctBar"></div>
         <div class="totalBar"></div>
@@ -125,7 +125,7 @@ const generateTrivia = function () {
 const generateResults = function () {
   console.log('generateResults');
   return `
-    <section class="end js-hidden" role="region">      <!--summary page -->
+    <section class="end" role="region">      <!--summary page -->
        <h1 id="score"></h1>
        <img id="scorepic" alt="reaction to your score">
        <button id="restart">Restart Quiz</button>
@@ -165,7 +165,7 @@ const renderResults = function () {
   //generate HTML
   const resultsString = generateResults();
   //insert HTML into DOM
-  $('.quiz').html(landingPageString);
+  $('.quiz').html(resultsString);
 };
 
 /********** EVENT HANDLER FUNCTIONS **********/
