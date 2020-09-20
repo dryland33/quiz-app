@@ -85,6 +85,18 @@ const generateLandingPage = function () {
 `;
 };
 
+const generateQuizQuestion = function () {
+  console.log('generateQuizQuestion');
+};
+
+const generateTrivia = function () {
+  console.log('generateTrivia');
+};
+
+const generateResults = function () {
+  console.log('generateResults');
+};
+
 /********** RENDER FUNCTION(S) **********/
 
 // These functions conditionally replaces the contents of the <main> tag based on the state of myQuiz
@@ -108,6 +120,10 @@ const handleSubmitClicked = function () {
   console.log('handleSubmitClicked()');
 };
 
+const handleNextQuestionClicked = function () {
+  console.log('handleNextQuestionClicked()');
+};
+
 const handleShowScoreClicked = function () {
   console.log('handleShowScoreClicked()');
 };
@@ -123,6 +139,7 @@ const handleQuizzApp = function () {
   renderLandingPage();
   handleBeginQuizClicked();
   handleSubmitClicked();
+  handleNextQuestionClicked();
   handleShowScoreClicked();
   handleRestartClicked();
 };
