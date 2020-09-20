@@ -87,14 +87,50 @@ const generateLandingPage = function () {
 
 const generateQuizQuestion = function () {
   console.log('generateQuizQuestion');
+  return `
+    <section class="questionForms js-hidden" role="region">
+      <div class="progress">
+        <div class="correctBar"></div>
+        <div class="totalBar"></div>
+      </div>
+      <h3 id="question"></h3>
+      <form action="#">
+        <label class="a"><input type="radio" name="myAnswer" value="a"><span class="a1"></span></label><br>
+        <label class="b"><input type="radio" name="myAnswer" value="b"><span class="b2"></span></label><br>
+        <label class="c"><input type="radio" name="myAnswer" value="c"><span class="c3"></span></label><br>
+        <label class="d"><input type="radio" name="myAnswer" value="d"><span class="d4"></span></label><br>
+        <button id="submit">Submit</button>
+      </form>
+    </section>
+  `;
 };
 
 const generateTrivia = function () {
   console.log('generateTrivia');
+  return `
+    <section class="resultsPage js-hidden" role="region"> 
+      <div class="progress">
+        <div class="correctBar"></div>
+        <div class="totalBar"></div>
+      </div>
+      <h2 id="resultText"></h2>
+      <img id="picTrivia" alt="Trivia image">
+      <p id="textTrivia"></p>
+      <button class="next">Next Question</button>
+      <button class="goToScore js-hidden">Show my Score</button>
+    </section>
+  `;
 };
 
 const generateResults = function () {
   console.log('generateResults');
+  return `
+    <section class="end js-hidden" role="region">      <!--summary page -->
+       <h1 id="score"></h1>
+       <img id="scorepic" alt="reaction to your score">
+       <button id="restart">Restart Quiz</button>
+    </section>
+  `;
 };
 
 /********** RENDER FUNCTION(S) **********/
@@ -108,6 +144,29 @@ const renderLandingPage = function () {
   $('.quiz').html(landingPageString);
 };
 
+const renderQuestion = function () {
+  console.log('renderQuestion()');
+  //generate HTML
+  const quizQuestionString = generateQuizQuestion();
+  //insert HTML into DOM
+  $('.quiz').html(quizQuestionString);
+};
+
+const renderTrivia = function () {
+  console.log('renderTrivia()');
+  //generate HTML
+  const triviaString = generateTrivia();
+  //insert HTML into DOM
+  $('.quiz').html(triviaString);
+};
+
+const renderResults = function () {
+  console.log('renderResults()');
+  //generate HTML
+  const resultsString = generateResults();
+  //insert HTML into DOM
+  $('.quiz').html(landingPageString);
+};
 
 /********** EVENT HANDLER FUNCTIONS **********/
 
