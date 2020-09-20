@@ -99,7 +99,7 @@ const generateQuizQuestion = function (index) {
         <label class="b">B.) <input type="radio" name="myAnswer" value="b"><span class="b2">${myQuiz.questionList[index].answers.b}</span></label><br>
         <label class="c">C.) <input type="radio" name="myAnswer" value="c"><span class="c3">${myQuiz.questionList[index].answers.c}</span></label><br>
         <label class="d">D.) <input type="radio" name="myAnswer" value="d"><span class="d4">${myQuiz.questionList[index].answers.d}</span></label><br>
-        <button id="btnSubmit" type="submit" >Submit</button>
+        <button id="btnSubmit" type="submit" class="btn-submit">Submit</button>
       </form>
     </section>
   `;
@@ -185,7 +185,7 @@ const handleSubmitClicked = function () {
   console.log('handleSubmitClicked()');
   // this function will be responsible for when the user answers a quiz question
   //listen for a click on the submit button
-  $('.js-question-submit').on('click', `.js-btn-submit`, event => {
+  $('main').on('click', `.btn-submit`, event => {
     event.preventDefault();
     // render the trivia page associated with the current question
     renderTrivia(myQuiz.currentQuestion);
