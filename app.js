@@ -125,10 +125,20 @@ const generateTrivia = function (index) {
 
 const generateResults = function () {
   console.log('generateResults()');
+  let imageString = '';
+  if (myQuiz.correctTally === myQuiz.questionList.length) {
+    imageString = 'img/lucky.gif';
+  }
+  else if (myQuiz.correctTally / myQuiz.questionList.length > .50) {
+    imageString = 'img/soso.gif';
+  }
+  else {
+    imageString = 'img/facepalm.gif';
+  }
   return `
     <section class="end" role="region">
        <h1 id="score"></h1>
-       <img id="scorepic" alt="reaction to your score">
+       <img id="scorepic" alt="reaction to your score" src="${imageString}">
        <button id="restart">Restart Quiz</button>
     </section>
   `;
@@ -190,7 +200,21 @@ const handleSubmitClicked = function () {
   $('main').on('click', `.btn-submit`, event => {
     event.preventDefault();
     // render the trivia page associated with the current question
-    renderTrivia(myQuiz.currentQuestion);
+    if ($('input[value="a"]').is(':checked') || $('input[value="b"]').is(':checked') || $('input[value="c"]').is(':checked') || $('input[value="d"]').is(':checked')) {
+      let choice = $('input[name="myAnswer"]:checked').val();
+
+      if (choice === myQuiz.questionList[myQuiz.currentQuestion].correct) {
+        //correctAnswer();
+        myQuiz.correctTally++;
+      }
+      else {
+        //wrongAnswer();
+      }
+      renderTrivia(myQuiz.currentQuestion);
+    }
+    else {
+      alert('Please choose an answer!');
+    }
   });
 };
 
