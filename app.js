@@ -12,6 +12,7 @@ const myQuiz = {
   correctTally: 0,
   percent: ['10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%',],
   result: ['You\'re correct!', 'You\'re wrong!'],
+  totalQuestions: 4,
   images: [
     "img/sun.jpg",
     "img/Uranus.jpg",
@@ -137,6 +138,7 @@ const generateResults = function () {
 
 // These functions conditionally replaces the contents of the <main> tag based on the state of myQuiz
 const renderLandingPage = function () {
+  myQuiz.currentQuestion = 0;
   console.log('renderLandingPage()');
   //generate HTML
   const landingPageString = generateLandingPage();
@@ -174,7 +176,7 @@ const renderResults = function () {
 const handleBeginQuizClicked = function () {
   console.log('handleBeginQuizClicked()');
   // this function will be responsible for when the users begins the quiz
-  $('.js-begin').on('click', function(event) {
+  $('main').on('click', `.js-begin`, event => {
     event.preventDefault();
     //make the HTML for the first question and bind it to the DOM
     renderQuestion(myQuiz.currentQuestion);
@@ -193,6 +195,16 @@ const handleSubmitClicked = function () {
 };
 
 const handleNextQuestionClicked = function () {
+  // This function displays the next question until 
+  // we run out of questions and then it displays the results page.
+  $('main').on('click', `.next`, event => {
+    if (myQuiz.currentQuestion < myQuiz.totalQuestions) {
+      myQuiz.currentQuestion++;
+      renderQuestion(myQuiz.currentQuestion);
+    } else {
+      renderResults();
+    }
+  });
   console.log('handleNextQuestionClicked()');
 };
 
@@ -202,6 +214,9 @@ const handleShowScoreClicked = function () {
 
 const handleRestartClicked = function () {
   console.log('handleRestartClicked()');
+  $('main').on('click', `#restart`, event => {
+    renderLandingPage();
+  });
 };
 
 // This function is our callback when the page loads.
