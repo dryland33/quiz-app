@@ -149,6 +149,7 @@ const generateResults = function () {
 // These functions conditionally replaces the contents of the <main> tag based on the state of myQuiz
 const renderLandingPage = function () {
   myQuiz.currentQuestion = 0;
+  myQuiz.correctTally = 0;
   console.log('renderLandingPage()');
   //generate HTML
   const landingPageString = generateLandingPage();
@@ -193,6 +194,18 @@ const handleBeginQuizClicked = function () {
   });
 };
 
+// moves the progress bar as user gets correct answer
+function progressBarCorrect() {
+  let width = ((myQuiz.correctTally) / myQuiz.questionList.length) * 100;
+  $('.correctBar').css('width', `${width}%`);
+}
+
+// moves the progress bar as user moves through the questions
+function progressBarTotal() {
+  let width = ((myQuiz.currentQuestion + 1) / myQuiz.questionList.length) * 100;
+  $('.totalBar').css('width', `${width}%`);
+}
+
 const handleSubmitClicked = function () {
   console.log('handleSubmitClicked()');
   // this function will be responsible for when the user answers a quiz question
@@ -206,11 +219,18 @@ const handleSubmitClicked = function () {
       if (choice === myQuiz.questionList[myQuiz.currentQuestion].correct) {
         //correctAnswer();
         myQuiz.correctTally++;
+        renderTrivia(myQuiz.currentQuestion);
+        progressBarTotal();
+        progressBarCorrect();
+        $('#resultText').text(myQuiz.result[0]).css('color', '#00FF33');
       }
       else {
         //wrongAnswer();
+        renderTrivia(myQuiz.currentQuestion);
+        progressBarTotal();
+        progressBarCorrect();
+        $('#resultText').text(myQuiz.result[1]).css('color', 'red');
       }
-      renderTrivia(myQuiz.currentQuestion);
     }
     else {
       alert('Please choose an answer!');
@@ -225,8 +245,12 @@ const handleNextQuestionClicked = function () {
     if (myQuiz.currentQuestion < myQuiz.totalQuestions) {
       myQuiz.currentQuestion++;
       renderQuestion(myQuiz.currentQuestion);
+      progressBarTotal();
+      progressBarCorrect();
     } else {
       renderResults();
+      progressBarTotal();
+      progressBarCorrect();
     }
   });
   console.log('handleNextQuestionClicked()');
